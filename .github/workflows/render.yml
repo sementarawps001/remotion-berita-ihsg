@@ -1,16 +1,3 @@
-name: Render Video
-on: [push]
-jobs:
-  render:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - run: npm install
-      - run: npx remotion render index.ts IHSGBreakingNews out/ihsg-news.mp4
-      - uses: actions/upload-artifact@v4
-        with:
-          name: video
-          path: out/ihsg-news.mp4
+      - run: npm ci # Lebih aman untuk CI/CD daripada npm install
+      # Tambahkan ini untuk memaksa rebuild native binding
+      - run: npm rebuild @rspack/binding
